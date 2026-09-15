@@ -1,14 +1,10 @@
-
 import { getCategories } from "@/app/(publicGroup)/_actions/gear/getCategories";
 import GearForm from "../../../_components/provider/GearForm";
 
-export const dynamic = "force-dynamic";
-
-const AddNewGearPage = async () => {
+const AddNewGearPage = async() => {
   const categories = await getCategories();
-
   return (
-    <div className="space-y-8">
+    <div className=" space-y-8">
       <div>
         <h1 className="text-3xl font-bold">Add New Gear</h1>
 
