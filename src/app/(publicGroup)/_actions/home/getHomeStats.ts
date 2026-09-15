@@ -1,10 +1,15 @@
 "use server";
 
-import { api } from "@/services/api";
-
+const api = process.env.NEXT_PUBLIC_API_URL;
 
 export const getHomeStats = async () => {
-  const res = await fetch(`${api}/api/home/stats`);
+  if (!api) {
+    throw new Error("NEXT_PUBLIC_API_URL is not configured.");
+  }
+
+  const res = await fetch(`${api}/api/home/stats`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch home statistics.");
@@ -18,3 +23,4 @@ export const getHomeStats = async () => {
 
   return data.data;
 };
+
